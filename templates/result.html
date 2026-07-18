@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Result</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <h2 class="text-center mb-4">📄 Resume Analysis Result</h2>
+
+    <!-- ATS Score Card -->
+    
+<div class="card shadow mb-4">
+    <div class="card-body text-center">
+
+        <h3 class="text-success">ATS Score</h3>
+
+        <h1 class="display-3 fw-bold text-primary">
+            {{ ats_score }}%
+        </h1>
+
+        <div class="d-flex justify-content-center mt-4">
+    <canvas id="atsChart" width="250" height="250"></canvas>
+</div>
+
+    </div>
+</div>
+
+    <!-- AI Feedback -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            🤖 AI Resume Analysis
+        </div>
+
+        <div class="card-body">
+            {% if ai_feedback %}
+                <pre style="white-space: pre-wrap;">{{ ai_feedback }}</pre>
+            {% else %}
+                <p class="text-danger">AI analysis is not available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-success text-white">
+                    ✅ Matched Skills
+                </div>
+
+                <div class="card-body">
+                    <ul>
+                        {% for skill in matched %}
+                        <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-danger text-white">
+                    ❌ Missing Skills
+                </div>
+
+                <div class="card-body">
+                    <ul>
+                        {% for skill in missing %}
+                        <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Resume Text -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-dark text-white">
+            📄 Extracted Resume Text
+        </div>
+
+        <div class="card-body">
+            <textarea class="form-control" rows="15" readonly>{{ resume_text }}</textarea>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+
+    <!-- Download PDF Button -->
+    <a href="{{ url_for('static', filename='reports/' + pdf_file) }}"
+       class="btn btn-success btn-lg me-3"
+       download>
+        📥 Download PDF Report
+    </a>
+
+    <!-- Dashboard Button -->
+    <a href="/dashboard" class="btn btn-primary btn-lg">
+        🏠 Back to Dashboard
+    </a>
+
+</div>
+
+</div>
+<!-- Chart.js Library  -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- ATS Score Chart -->
+<script>
+const score = {{ ats_score }};
+
+const ctx = document.getElementById('atsChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [score, 100 - score],
+            backgroundColor: [
+                '#198754',
+                '#e9ecef'
+            ],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: false,
+        cutout: '75%',
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                enabled: false
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5" style="max-width:500px;">
+
+    <h2 class="text-center mb-4">Register</h2>
+
+    <form action="/register" method="POST">
+
+    <input
+        type="text"
+        name="fullname"
+        class="form-control mb-3"
+        placeholder="Full Name"
+        required>
+
+    <input
+        type="email"
+        name="email"
+        class="form-control mb-3"
+        placeholder="Email"
+        required>
+
+    <input
+        type="password"
+        name="password"
+        class="form-control mb-3"
+        placeholder="Password"
+        required>
+
+    <button type="submit" class="btn btn-success w-100">
+        Register
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>

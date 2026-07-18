@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5" style="max-width:500px;">
+
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form action="/login" method="POST">
+
+    <input
+        type="email"
+        name="email"
+        class="form-control mb-3"
+        placeholder="Email"
+        required>
+
+    <input
+        type="password"
+        name="password"
+        class="form-control mb-3"
+        placeholder="Password"
+        required>
+
+    <button type="submit" class="btn btn-primary w-100">
+        Login
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>

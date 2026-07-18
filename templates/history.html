@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis History</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <h1 class="text-center text-primary mb-4">
+        📜 Resume Analysis History
+    </h1>
+
+    <!-- Search Form -->
+    <form method="GET" action="/history" class="mb-4">
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                class="form-control"
+                name="search"
+                placeholder="Search by Resume Name..."
+                value="{{ search }}">
+
+            <button class="btn btn-primary" type="submit">
+                🔍 Search
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- History Table -->
+    <div class="card shadow">
+
+        <div class="card-header bg-dark text-white">
+            Analysis Records
+        </div>
+
+        <div class="card-body">
+
+            {% if analyses %}
+
+            <table class="table table-hover table-bordered align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                      <th>ID</th>
+                      <th>Resume Name</th>
+                      <th>ATS Score</th>
+                      <th>Date</th>
+                      <th>Action</th>    
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for row in analyses %}
+
+                    <tr>
+
+                        <td>{{ row.id }}</td>
+
+                        <td>{{ row.resume_name }}</td>
+
+                        <td>
+
+                            {% if row.ats_score >= 80 %}
+                                <span class="badge bg-success fs-6">
+                                    {{ row.ats_score }}%
+                                </span>
+
+                            {% elif row.ats_score >= 60 %}
+                                <span class="badge bg-warning text-dark fs-6">
+                                    {{ row.ats_score }}%
+                                </span>
+
+                            {% else %}
+                                <span class="badge bg-danger fs-6">
+                                    {{ row.ats_score }}%
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ row.created_at }}</td>
+
+                        <td>
+
+    <a href="/view_analysis/{{ row.id }}"
+       class="btn btn-primary btn-sm">
+        👁 View
+    </a>
+
+    <a href="/delete_history/{{ row.id }}"
+       class="btn btn-danger btn-sm"
+       onclick="return confirm('Are you sure you want to delete this analysis?')">
+        🗑 Delete
+    </a>
+
+</td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+                <div class="alert alert-info text-center">
+                    No resume analysis history found.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-4 d-flex gap-3">
+
+        <a href="/dashboard" class="btn btn-primary">
+            ⬅ Back to Dashboard
+        </a>
+
+        <a href="/upload_resume" class="btn btn-success">
+            📄 Upload New Resume
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

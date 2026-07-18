@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">AI Resume Analyzer</a>
+
+        <div>
+            <a href="/login" class="btn btn-light me-2">Login</a>
+            <a href="/register" class="btn btn-warning">Register</a>
+        </div>
+    </div>
+</nav>
+
+<section class="container text-center mt-5">
+
+    <h1 class="display-4 fw-bold">
+        AI Resume Analyzer & ATS Checker
+    </h1>
+
+    <p class="lead mt-3">
+        Upload your resume, compare it with job descriptions, calculate ATS score, and get AI-powered improvement suggestions.
+    </p>
+
+    <a href="#" class="btn btn-primary btn-lg mt-3">
+        Get Started
+    </a>
+
+</section>
+
+<section class="container mt-5">
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <h3>📄 Resume Upload</h3>
+            <p>Upload PDF or DOCX resumes easily.</p>
+        </div>
+
+        <div class="col-md-4">
+            <h3>📊 ATS Score</h3>
+            <p>Check how well your resume matches job descriptions.</p>
+        </div>
+
+        <div class="col-md-4">
+            <h3>🤖 AI Suggestions</h3>
+            <p>Receive personalized recommendations to improve your resume.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="bg-dark text-white text-center p-3 mt-5">
+    © 2026 AI Resume Analyzer | Built with Flask & Python
+</footer>
+
+</body>
+</html>
